@@ -48,8 +48,8 @@ public class UsersResource {
 	    		        .addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
 	    		
 	    		BoolQueryBuilder first = QueryBuilders.boolQuery()
-	    				.must(QueryBuilders.termQuery("vehicle_color.keyword", carFilter.getVehicle_color()))
-	    				.must(QueryBuilders.termQuery("vehicle_transmission_type_code.keyword", carFilter.getVehicle_transmission_type_code()));
+	    				.must(QueryBuilders.matchQuery("vehicle_color", carFilter.getVehicle_color()))
+	    				.must(QueryBuilders.matchQuery("vehicle_transmission_type_code", carFilter.getVehicle_transmission_type_code()));
 
 	    		
 	            SearchResponse searchResponse = client.prepareSearch("agil_auto").setQuery(first).get();
